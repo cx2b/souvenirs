@@ -1,0 +1,298 @@
+<!--
+
+Souvenirs - Converts HTML links into various template-based formats
+Version 1.0
+Copyright 2024 Cristian Cezar Botez. All rights reserved.
+
+This file is part of Souvenirs.
+
+Souvenirs is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+Souvenirs is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with Souvenirs. If not, see <https://www.gnu.org/licenses/>.
+
+https://github.com/cx2b/souvenirs
+
+-->
+
+<!--
+
+MEMENTO:
+    * update `head > meta > keywords` with the new output formats
+
+-->
+
+<!doctype html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <meta name="application-name" content="Souvenirs">
+        <meta name="author" content="Cristian Cezar Botez">
+        <meta name="description" content="Converts HTML links into various template-based formats.">
+
+        <!-- NOTE: update `keywords` with the new output formats -->
+        <meta name="keywords" content="souvenirs,html,bookmarks,links,hyperlinks,parse,extract,convert,templates,markdown,latex,csv">
+
+        <meta name="referrer" content="no-referrer">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Souvenirs</title>
+
+        <script defer="defer" src="scripts/souvenirs.js"></script>
+
+        <link rel="stylesheet" href="styles/souvenirs.css">
+
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    </head>
+
+    <body>
+
+        <div class="box-row">
+
+            <div class="box-col-1">
+            </div>
+
+            <div class="box-col-a">
+
+                <div class="grid-container">
+
+                    <!-- header -->
+
+                    <div class="grid-cell-span-4">
+                        <div class="header">
+                            <img src="favicon.ico"
+                                 alt="Souvenirs logo"
+                                 title="Souvenirs - Converts HTML links into various template-based formats"
+                                 height="32">
+                            <div class="header-title">Souvenirs</div><sub>1.0</sub>
+                        </div>
+                    </div>
+
+                    <!-- row 1 -->
+
+                    <div class="grid-cell-span-4">
+                        INPUT
+                    </div>
+
+                    <!-- row 2 -->
+
+                    <div class="grid-cell-span-3">
+                        <textarea id="inputTextArea"
+                                  title="Area to input HTML text"
+                                  placeholder="HTML text to parse (type, paste or drag & drop)"
+                                  rows="12"
+                                  autofocus></textarea>
+                    </div>
+                    <div>
+                        <input type="button"
+                               id="inputClearButton"
+                               title="Clear input area"
+                               class="button button-toolbar"
+                               value="Clear">
+                    </div>
+
+                    <!-- row 3 -->
+
+                    <div></div>
+                    <div class="dropdown">
+                        <div class="button button-dropdown"></div>
+
+                        <div class="dropdown-format">
+                            <div class="dropdown-format-item"
+                                 data-title="Souvenirs"
+                                 data-value="souvenirs"
+                                 data-extension=".txt">
+                                Souvenirs (txt)</div>
+                            <div class="dropdown-format-item"
+                                 data-title="Markdown"
+                                 data-value="md"
+                                 data-extension=".md">
+                                Markdown (md)</div>
+                            <div class="dropdown-format-item"
+                                 data-title="LaTex"
+                                 data-value="tex"
+                                 data-extension=".tex">
+                                LaTex (tex)</div>
+                            <div class="dropdown-format-item"
+                                 data-title="Comma-separated values"
+                                 data-value="csv"
+                                 data-extension=".csv">
+                                Comma-separated values (csv)</div>
+                            <div class="dropdown-format-item"
+                                 data-title="Bookmarks"
+                                 data-value="bookmarks"
+                                 data-extension=".html">
+                                Bookmarks (html)</div>
+                            <div class="dropdown-format-item"
+                                 data-title="Custom template"
+                                 data-value="custom"
+                                 data-extension=".txt">
+                                Custom template...</div>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="button"
+                               id="inputParseButton"
+                               title="Parse input and apply selected template to format hyperlinks"
+                               class="button button-parse"
+                               value="Parse">
+                    </div>
+                    <div></div>
+
+                    <!-- row 4 -->
+
+                    <div class="grid-cell-span-4">
+                        OUTPUT
+                    </div>
+
+                    <!-- row 5 -->
+
+                    <div class="grid-cell-span-3">
+                        <!--
+                            `readonly` attribute not present in order to
+                            accomodate post parsing manual text alteration
+                        -->
+                        <textarea id="outputTextArea"
+                                  title="Area to output hyperlinks"
+                                  placeholder="Expect formatted hyperlinks here"
+                                  rows="12"></textarea>
+                    </div>
+                    <div>
+                        <input type="button"
+                               id="outputCopyButton"
+                               title="Copy output to clipboard"
+                               class="button button-toolbar"
+                               value="Copy">
+                        <input type="button"
+                               id="outputSaveButton"
+                               title="Save output to file"
+                               class="button button-toolbar"
+                               value="Save">
+                        <input type="button"
+                               id="outputClearButton"
+                               title="Clear output area"
+                               class="button button-toolbar"
+                               value="Clear">
+                    </div>
+
+                    <!-- row 6 -->
+
+                    <div class="grid-cell-span-4">
+                        <div id="feedbackContainer"
+                             class="feedback"></div>
+                    </div>
+
+                    <!-- footer -->
+
+                    <div class="grid-cell-span-4">
+                        <div class="footer">
+                            <div id="aboutDialogBoxAnchor"
+                                 title="About dialog box: software description, license, source code">
+                                About
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="box-col-1">
+            </div>
+
+        </div>
+
+        <!-- About dialog box (modal) -->
+
+        <div id="aboutDialogBox"
+             class="modal-dialog-box">
+
+            <!-- modal frame -->
+
+            <div class="modal-frame">
+
+                <!-- modal header -->
+
+                <div class="modal-header">
+                    About
+                </div>
+
+                <!-- modal body -->
+
+                <div class="modal-body">
+                    <div class="header">
+                        <img src="favicon.ico"
+                             alt="Souvenirs logo"
+                             title="Souvenirs - Converts HTML links into various template-based formats"
+                             height="32">
+                        <div class="header-title">Souvenirs</div><sub>1.0</sub>
+                    </div>
+
+                    <p>
+                        Copyright 2024 Cristian Cezar Botez. All rights reserved.
+                    </p>
+                    <p>
+                        <b>Souvenirs</b> is a simple web application that collects
+                        anchor tag elements (hyperlinks) from any properly formed
+                        HTML document and converts the result into various
+                        template-based formats. The HTML document may be any web
+                        page source, bookmarks file or HTML fragment.
+                    </p>
+                    <p>
+                        <b>Souvenirs</b> is free software and licensed under the
+                        terms of the GNU Affero General Public License, either
+                        version 3 of the License, or (at your option) any later
+                        version as published by the
+                        <a href="https://www.gnu.org/licenses/"
+                           title="Licenses, evaluating licenses, other resources"
+                           target="_blank">Free Software Foundation</a>.
+                    </p>
+
+                    <div class="footer modal-about-footer">
+                        <a href="https://www.gnu.org/licenses/agpl-3.0.html#license-text"
+                           target="_blank">
+                            <img src="images/agplv3-88x31.png"
+                                 alt="GNU Affero General Public License version 3 or any later version"
+                                 title="GNU Affero General Public License version 3 or any later version"
+                                 height="24">
+                        </a>
+                        <a href="https://github.com/cx2b/souvenirs"
+                           target="_blank">
+                            <img src="images/github-mark.svg"
+                                 alt="Souvenirs on GitHub"
+                                 title="Souvenirs on GitHub"
+                                 height="24">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- modal footer -->
+
+                <div class="modal-footer">
+                    <input type="button"
+                           id="aboutButtonClose"
+                           title="Close dialog box"
+                           class="button button-toolbar modal-button-close"
+                           value="Close">
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>

@@ -1,0 +1,280 @@
+/*
+ * Souvenirs - Converts HTML links into various template-based formats
+ * Version 1.0
+ * Copyright 2024 Cristian Cezar Botez. All rights reserved.
+ * 
+ * This file is part of Souvenirs.
+ * 
+ * Souvenirs is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * Souvenirs is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with Souvenirs. If not, see <https://www.gnu.org/licenses/>.
+ * 
+ * https://github.com/cx2b/souvenirs
+ */
+
+
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* box */
+
+/* 12-column layout, 8.33% each (create more columns as necessary) */
+.box-col-1 { width:  8.33%; }
+.box-col-a { width: 83.33%; }
+
+[class*="box-col-"] {
+    float: left;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: 1px solid rgba(128, 128, 128, 0);
+}
+
+.box-row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+/* grid */
+
+/* 4-column grid (as defined by `grid-template-columns`) */
+.grid-container {
+    display: grid;
+    grid-template-columns: auto max-content 80px 80px;
+    gap: 4px;
+    padding: 4px;
+}
+
+/* spans over the entire width of the grid */
+.grid-cell-span-4 {
+    grid-column: 1 / span 4;
+}
+
+/* spans over the entire width of the grid, less one column */
+.grid-cell-span-3 {
+    grid-column: 1 / span 3;
+}
+
+
+/* buttons */
+
+.button {
+    width: 100%;
+    height: 28px;
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    font: inherit;
+}
+
+.button-dropdown {
+    float: right;
+    border-color: burlywood;
+    padding: 4px;
+}
+
+/* extra small devices (600px and down) */
+@media only screen and (max-width: 600px) {
+    .button-dropdown {
+        width: 200px;
+    }
+}
+
+/* other devices (600px and up) */
+@media only screen and (min-width: 600px) {
+    .button-dropdown {
+        width: 280px;
+    }
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-format {
+    display: none;
+    position: absolute;
+    top: 28px;
+    width: 100%;
+    background-color: linen;
+    box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-format {
+    display: block;
+}
+
+.dropdown-format div {
+    padding: 8px 16px;
+}
+
+.dropdown-format div:hover {
+    cursor: pointer;
+    background-color: bisque;
+}
+
+.button-parse {
+    border-color: seagreen;
+}
+
+.button-parse:hover {
+    color: white;
+    background-color: lightseagreen;
+}
+
+.button-parse:active {
+    background-color: seagreen;
+}
+
+.button-toolbar {
+    margin-bottom: 2px;
+    border-color: indianred;
+}
+
+.button-toolbar:hover {
+    color: white;
+    background-color: lightcoral;
+}
+
+.button-toolbar:active {
+    background-color: indianred;
+}
+
+
+/* text */
+
+textarea {
+    font-family: "Lucida Console", monospace;
+    width: 100%;
+    min-height: 100px;
+    resize: vertical;
+}
+
+textarea:hover {
+    background-color: linen;
+}
+
+
+/* feedback */
+
+.feedback {
+    display: inline;
+    visibility: hidden;
+    border-left: 4px solid tomato;
+    padding-left: 4px;
+}
+
+
+/* header */
+
+.header {
+    border-bottom: 1px solid deepskyblue;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+}
+
+.header img {
+    vertical-align: bottom;
+}
+
+.header-title {
+    display: inline;
+    font-size: x-large;
+    margin: 0 0 8px 4px;
+}
+
+
+/* footer */
+
+.footer {
+    border-top: 1px solid deepskyblue;
+    margin-top: 8px;
+    padding-top: 4px;
+}
+
+.footer div {
+    width: max-content;
+    cursor: pointer;
+}
+
+.footer div:hover {
+    color: #006080;
+}
+
+
+/* modal dialog box */
+
+.modal-dialog-box {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 60px;
+    overflow: auto;
+    z-index: 1;
+}
+
+.modal-frame {
+    width: 60%;
+    margin: auto;
+    padding: 12px 12px 4px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: ivory;
+    box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.4);
+}
+
+.modal-header {
+    font-weight: bold;
+    padding: 4px 0;
+}
+
+.modal-body {
+    padding: 12px;
+    border: 1px solid lightcoral;
+}
+
+.modal-footer {
+    height: 48px;
+    padding: 8px 0;
+}
+
+.modal-button-close {
+    /* for consistency, set `width` to be equal to the width
+     * of the grid column that holds the toolbar buttons */
+    width: 80px;
+    float: right;
+}
+
+
+/* specific to the About dialog box */
+
+.modal-about-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-about-footer img {
+    vertical-align: bottom;
+}

@@ -1,0 +1,19 @@
+# default behavior
+# in case `core.autocrlf` was not already configured
+* text=auto
+
+# explicitly declare text files to always be normalized
+# and converted to native line endings on checkout
+# *.     text
+# *.md   text
+# *.html text
+# *.js   text
+# *.css  text
+# *.txt  text
+
+# should not be modified
+COPYING -text
+*.ico  binary
+*.png  binary
+*.svg  binary
+*.webp binary
