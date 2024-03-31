@@ -45,7 +45,44 @@ For the _Souvenirs template language_ syntax and how to create custom template f
 
 # Changelog
 
+Notable changes in the current release:
+
+  * fixed link to [v1.0](https://github.com/cx2b/souvenirs/releases/tag/v1.0) release in [`CHANGELOG.md`](CHANGELOG.md "Versions and change history");
+  * added section to the main page (this file) to include the list of _future development_ targets.
+
 More information [here](CHANGELOG.md "Versions and change history").
+
+
+# Future Development
+
+In no particular order.
+
+### Software
+
+  * use URL parameters to customize application:
+    * parameters, as alternative to cookies;
+    * convenient way to save multiple configurations;
+    * ability to share application settings;
+  * ~~light~~ (default) and dark color schemes;
+  * set newline character in _output_ (_dos_ or _unix_);
+  * remove duplicates in _output_;
+  * sort _output_ by link or title;
+  * highlight _input_ on focus;
+  * highlight _output_ on focus;
+  * extract links from media tags;
+  * set title if not found in anchor tags:
+    * for example, `[ undefined ](https://git-scm.com/)`;
+  * download web page as _input_;
+  * expand same-site links if base address is defined;
+  * set or override base address;
+  * automatic parsing.
+
+### Template language
+
+  * fields (current date/time):
+    * **${date}**
+    * **${datetime}**
+    * **${time}**
 
 
 # Contributing

@@ -9,6 +9,8 @@ Notable changes in _Souvenirs_.
 
 Fixed link to [v1.0](https://github.com/cx2b/souvenirs/releases/tag/v1.0) release in `CHANGELOG.md` (this file).
 
+Added section to the main page to include the list of _future development_ targets.
+
 <br>
 
 ## [v1.0](https://github.com/cx2b/souvenirs/releases/tag/v1.0)
