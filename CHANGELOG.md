@@ -5,7 +5,13 @@ Notable changes in _Souvenirs_.
 
 # Changelog
 
-## [v1.0](https://github.com/souvenirs/releases/tag/v1.0)
+**2024-03-30**
+
+Fixed link to [v1.0](https://github.com/cx2b/souvenirs/releases/tag/v1.0) release in `CHANGELOG.md` (this file).
+
+<br>
+
+## [v1.0](https://github.com/cx2b/souvenirs/releases/tag/v1.0)
 
 **2024-02-26**
 
